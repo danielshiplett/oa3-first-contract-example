@@ -1,0 +1,55 @@
+  openapi: "3.0.0"
+  info:
+    title: Statics V1 API
+    version: "1.0.0"
+    description: The Statics v1 API
+  servers:
+    - url: http://api.example.com/api/v1
+  paths:
+    /lists:
+      get:
+        summary: Get all list names
+        operationId: getAllLists
+        x-contracts:  # This is an extension to the OpenAPI spec that is supported by the SCC OA3 plugin.
+          - contractId: 1
+            name: statics_v1_getAllLists_should_return_page # You can name the stub.  It must be unique across the entire project.
+            priority: 1
+            contractPath: "/api/v1/lists" # Needed to generate the correct path in the Test class.
+            serviceName: statics # You can limit the SCC to a single service if more than one service is defined in
+                                 # the OpenAPI spec.  See https://dzone.com/articles/contracts-for-microservices-with-openapi-and-sprin
+        parameters:
+          - name: pageable
+            in: query
+            required: false
+            schema:
+              $ref: "#/components/schemas/Pageable"
+        responses:
+          '200':
+            description: Page of list names
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Page"
+            x-contracts:
+              - contractId: 1
+                body:
+                  content: ["this", "and", "that"]
+                  pageable: "INSTANCE"
+                  totalPages: 1
+                  totalElements: 3
+                  first: true
+                  last: true
+                  number: 0
+                  size: 3
+                  numberOfElements: 3
+                  empty: false
+                  sort:
+                    sorted: false
+                    unsorted: true
+                    empty: true
+  components:
+    schemas:
+      Page:
+        type: object
+      Pageable:
+        type: object
