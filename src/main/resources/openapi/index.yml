@@ -28,6 +28,8 @@
             description: Page of list names
             content:
               application/json:
+                x-generic:
+                  type: string
                 schema:
                   $ref: "#/components/schemas/Page"
             x-contracts:
@@ -52,4 +54,7 @@
       Page:
         type: object
       Pageable:
+        type: object
+      PageOfString:   # from the mapping in the POM, this created the correct return type, but caused issues with the
+                      # @ApiResponse annotation.
         type: object

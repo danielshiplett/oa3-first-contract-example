@@ -159,7 +159,7 @@
                 <!--<version>2.2.3.RELEASE</version>-->
                 <extensions>true</extensions>
                 <configuration>
-                    <contractsDirectory>src/main/resources/openapi/statics/v1</contractsDirectory>
+                    <contractsDirectory>src/main/resources/openapi</contractsDirectory>
                     <testFramework>JUNIT5</testFramework>
                     <packageWithBaseClasses>org.brewman.oa3firstcontractexample.statics.web.api.v1</packageWithBaseClasses>
                 </configuration>
@@ -184,7 +184,7 @@
                         </goals>
                         <configuration>
                             <inputSpec>
-                                ${project.basedir}/src/main/resources/openapi/statics/v1/openapi.yml
+                                ${project.basedir}/src/main/resources/openapi/index.yml
                             </inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>org.brewman.oa3firstcontractexample.statics.web.api.v1</apiPackage>
@@ -198,6 +198,8 @@
                             <importMappings>
                                 <importMapping>Page=org.springframework.data.domain.Page</importMapping>
                                 <importMapping>Pageable=org.springframework.data.domain.Pageable</importMapping>
+
+                                <importMapping>PageOfString=org.springframework.data.domain.Page&lt;String&gt;</importMapping>
                             </importMappings>
                         </configuration>
                     </execution>
